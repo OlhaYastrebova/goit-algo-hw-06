@@ -66,24 +66,34 @@ class AddressBook(UserDict):
     
 # Створення нової адресної книги
     # Приклад використання
-address_book = AddressBook()
+address_book = AddressBook() 
 
-record1 = Record("John Doe")
-record1.add_phone("1234567890")
-record1.add_phone("0987654321")
-address_book.add_record(record1)
+    # Створення запису для John
+john_record = Record("John")
+john_record.add_phone("1234567890")
+john_record.add_phone("5555555555")
 
-record2 = Record("Jane Smith")
-record2.add_phone("5555555555")
-address_book.add_record(record2)
+    # Додавання запису John до адресної книги
+address_book.add_record(john_record)
 
-print("Адресна книга:")
+    # Створення та додавання нового запису для Jane
+jane_record = Record("Jane")
+jane_record.add_phone("9876543210")
+address_book.add_record(jane_record)
+
+    # Виведення всіх записів у книзі
+     
 print(address_book)
 
-print("\nЗнайдений запис для John Doe:")
-print(address_book.find("John Doe"))
+    # Знаходження та редагування телефону для John
+john = address_book.find("John")
+john.edit_phone("1234567890", "1112223333")
 
-address_book.delete("Jane Smith")
+print(john)  # Виведення: Contact name: John, phones: 1112223333; 5555555555
 
-print("\nАдресна книга після видалення запису Jane Smith:")
-print(address_book)
+    # Пошук конкретного телефону у записі John
+found_phone = john.find_phone("5555555555")
+print(f"{john.name}: {found_phone}")  # Виведення: John: 5555555555
+
+    # Видалення запису Jane
+address_book.delete("Jane")
